@@ -1,8 +1,8 @@
 /*
- informations.js - ESP3D WebUI Informations file
+ connection.js - ESP3D WebUI area file
 
  Copyright (c) 2020 Luc Lebosse. All rights reserved.
- 
+
  This code is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
  License as published by the Free Software Foundation; either
@@ -18,17 +18,30 @@
  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 import { h } from "preact"
-import { InformationsControls, QuickButtonsBar } from "../targets"
-const Informations = () => {
+import { useEffect, useState, useRef } from "preact/hooks"
+import { ViewContainerFn } from "."
+
+/*
+ * Local const
+ *
+ */
+
+const SetupContainer = () => {
     return (
-        <div id="infopage" class="container">
-            <div class="m-2" />
-            <InformationsControls />
-            <div class="information-buttons-bar m-2">
-                <QuickButtonsBar />
+        <div class="empty fullscreen">
+            <div class="centered text-primary">
+                Setup Container to be done
+                <br />
+                <button
+                    onclick={() => {
+                        ViewContainerFn.setShowSetup(false)
+                    }}
+                >
+                    Finish Setup
+                </button>
             </div>
         </div>
     )
 }
 
-export { Informations }
+export { SetupContainer }

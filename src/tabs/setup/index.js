@@ -1,8 +1,8 @@
 /*
- informations.js - ESP3D WebUI Informations file
+ index.js - ESP3D WebUI navigation tab file
 
  Copyright (c) 2020 Luc Lebosse. All rights reserved.
- 
+
  This code is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
  License as published by the Free Software Foundation; either
@@ -18,17 +18,25 @@
  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 import { h } from "preact"
-import { InformationsControls, QuickButtonsBar } from "../targets"
-const Informations = () => {
+
+import { ViewContainerFn } from "../../areas"
+
+const SetupTab = () => {
+    console.log("setuptab")
     return (
-        <div id="infopage" class="container">
-            <div class="m-2" />
-            <InformationsControls />
-            <div class="information-buttons-bar m-2">
-                <QuickButtonsBar />
+        <div id="setup" class="empty fullscreen">
+            <div class="centered text-primary">
+                Wizard introduction page <br />
+                <button
+                    onclick={() => {
+                        ViewContainerFn.setShowSetup(true)
+                    }}
+                >
+                    Start Setup
+                </button>
             </div>
         </div>
     )
 }
 
-export { Informations }
+export { SetupTab }

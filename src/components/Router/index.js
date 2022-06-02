@@ -20,7 +20,7 @@ import { h, Fragment } from "preact"
 import { useState, useEffect, useCallback } from "preact/hooks"
 import { Loading } from "../Controls"
 import { useRouterContext } from "../../contexts"
-
+const RouterFn = {}
 const Router = ({ children, routesList, localDefault }) => {
     const [isLoading, setIsLoading] = useState(true)
     const {
@@ -87,6 +87,7 @@ const Router = ({ children, routesList, localDefault }) => {
             window.location.href = "/#" + localDefaultRoute
         }
     }
+    RouterFn.setActiveRouteAndComp = setActiveRouteAndComp
     useEffect(() => {
         setRoutes({ ...routes, ...routesList })
         setActiveRouteAndComp()
@@ -154,4 +155,4 @@ const Link = ({
     )
 }
 
-export { Router, Link }
+export { Router, Link, RouterFn }

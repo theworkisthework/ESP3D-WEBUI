@@ -27,7 +27,7 @@ import {
     useUiContext,
     useUiContextFn,
 } from "../../contexts"
-import { Tool } from "preact-feather"
+import { Tool, Settings } from "preact-feather"
 
 /*
  * Local const
@@ -45,6 +45,7 @@ const defaultLinks = [
         href: "/settings/interface",
     },
     { label: Target, icon: <Tool />, href: "/settings/machine" },
+    { label: "S165", icon: <Settings />, href: "/settings/setup" },
 ]
 const TabBar = () => {
     const { connectionSettings } = useSettingsContext()

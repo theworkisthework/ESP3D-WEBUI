@@ -19,24 +19,29 @@
 */
 import { h, Fragment } from "preact"
 import { Menu } from "./menu"
-import { Informations } from "./informations"
 import { ConnectionContainer } from "./connection"
+import { SetupContainer } from "./setup"
 import { MainContainer } from "./main"
 import { useUiContext, useUiContextFn } from "../contexts/UiContext"
 import { useSettingsContext } from "../contexts/SettingsContext"
 import { useSettings, useHttpQueue } from "../hooks"
-import { useEffect } from "preact/hooks"
+import { useState, useEffect } from "preact/hooks"
 import { showLogin, showKeepConnected, showModal } from "../components/Modal"
 import { espHttpURL, dispatchToExtensions } from "../components/Helpers"
 import { T, baseLangRessource } from "../components/Translations"
 import { HelpCircle, Layout } from "preact-feather"
+
 /*
  * Local const
  *
  */
-
+const setup = { show: true }
+const ViewContainerFn = {}
 const ViewContainer = () => {
     const { connection, dialogs } = useUiContext()
+    const { connectionSettings } = useSettingsContext()
+    const [showSetup, setShowSetup] = useState(false)
+    ViewContainerFn.setShowSetup = setShowSetup
     if (dialogs.needLogin == true) {
         dialogs.setNeedLogin(false)
         showLogin()
@@ -49,14 +54,25 @@ const ViewContainer = () => {
         connection.connectionState.connected &&
         connection.connectionState.authenticate &&
         !connection.connectionState.updating
-    )
-        return (
-            <Fragment>
-                <Menu />
-                <MainContainer />
-            </Fragment>
-        )
-    else {
+    ) {
+        if (
+            setup.show == true &&
+            connectionSettings.current.Setup == "Enabled"
+        ) {
+            setup.show = false
+            setShowSetup(true)
+        }
+        if (showSetup) {
+            return <SetupContainer />
+        } else {
+            return (
+                <Fragment>
+                    <Menu />
+                    <MainContainer />
+                </Fragment>
+            )
+        }
+    } else {
         return <ConnectionContainer />
     }
 }
@@ -115,10 +131,7 @@ const ContentContainer = () => {
                     break
                 case "query":
                     createNewRequest(
-                        espHttpURL(
-                            eventMsg.data.url,
-                            eventMsg.data.args
-                        ),
+                        espHttpURL(eventMsg.data.url, eventMsg.data.args),
                         { method: "GET" },
                         {
                             onSuccess: (result) => {
@@ -178,10 +191,7 @@ const ContentContainer = () => {
                     )
                     formData.append("myfiles", file, eventMsg.data.filename)
                     createNewRequest(
-                        espHttpURL(
-                            eventMsg.data.url,
-                            eventMsg.data.args
-                        ),
+                        espHttpURL(eventMsg.data.url, eventMsg.data.args),
                         {
                             method: "POST",
                             id: eventMsg.data.id,
@@ -233,10 +243,7 @@ const ContentContainer = () => {
                     break
                 case "download":
                     createNewRequest(
-                        espHttpURL(
-                            eventMsg.data.url,
-                            eventMsg.data.args
-                        ),
+                        espHttpURL(eventMsg.data.url, eventMsg.data.args),
                         { method: "GET", id: "download" },
                         {
                             onSuccess: (result) => {
@@ -323,15 +330,15 @@ const ContentContainer = () => {
                         title: T(content.title),
                         button2: content.bt2Txt
                             ? {
-                                cb: cb2,
-                                text: T(content.bt2Txt),
-                            }
+                                  cb: cb2,
+                                  text: T(content.bt2Txt),
+                              }
                             : null,
                         button1: content.bt1Txt
                             ? {
-                                cb: cb1,
-                                text: T(content.bt1Txt),
-                            }
+                                  cb: cb1,
+                                  text: T(content.bt1Txt),
+                              }
                             : null,
                         icon:
                             content.style == "question" ? (
@@ -424,4 +431,4 @@ const ContentContainer = () => {
     return <ViewContainer />
 }
 
-export { ContentContainer }
+export { ContentContainer, ViewContainerFn }

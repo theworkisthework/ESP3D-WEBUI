@@ -23,6 +23,7 @@ import { Router } from "../../components/Router"
 import { FeaturesTab } from "../../tabs/features"
 import { InterfaceTab } from "../../tabs/interface"
 import { MachineTab } from "../../tabs/machine"
+import { SetupTab } from "../../tabs/setup"
 import { TabBar } from "../../components/TabBar"
 import { T } from "../../components/Translations"
 
@@ -38,6 +39,10 @@ const routes = {
     MACHINE: {
         component: <MachineTab />,
         path: "/settings/machine",
+    },
+    SETUP: {
+        component: <SetupTab />,
+        path: "/settings/setup",
     },
 }
 
