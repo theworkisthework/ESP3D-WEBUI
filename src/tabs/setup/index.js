@@ -18,22 +18,27 @@
  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 import { h } from "preact"
-
 import { ViewContainerFn } from "../../areas"
+import { ButtonImg } from "../../components/Controls"
+import { T } from "../../components/Translations"
+import { ArrowRight } from "preact-feather"
+import { useUiContextFn } from "../../contexts"
 
 const SetupTab = () => {
     console.log("setuptab")
     return (
         <div id="setup" class="empty fullscreen">
             <div class="centered text-primary">
-                Wizard introduction page <br />
-                <button
+                <div class="m-2"> {T("S204")}</div>
+
+                <ButtonImg
+                    icon={<ArrowRight />}
+                    label={T("S203")}
                     onclick={() => {
+                        useUiContextFn.haptic()
                         ViewContainerFn.setShowSetup(true)
                     }}
-                >
-                    Start Setup
-                </button>
+                />
             </div>
         </div>
     )
