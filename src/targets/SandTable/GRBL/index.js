@@ -25,7 +25,7 @@ import { defaultPanelsList } from "./panels"
 import { MachineSettings } from "./MachineSettings"
 import { InformationsControls, QuickButtonsBar } from "./Controls"
 import { AppLogo } from "../../../components/Images/logo"
-import { Eye as WebUILogo } from "preact-feather"
+import { AppLogo as WebUILogo } from "../../../components/Images/logo"
 import {
     TargetContextProvider,
     useTargetContext,

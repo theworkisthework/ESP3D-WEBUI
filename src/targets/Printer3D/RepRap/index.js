@@ -34,7 +34,7 @@ import {
     useTargetContextFn,
 } from "./TargetContext"
 import { AppLogo } from "../../../components/Images/logo"
-import { Eye as WebUILogo } from "preact-feather"
+import { AppLogo as WebUILogo } from "../../../components/Images/logo"
 /*
 GRBL            10
 MARLIN          20
