@@ -45,7 +45,7 @@ REPETIER        50
 FLUIDNC         60
 REPRAP          70
 */
-const TargetName = "Marlin-embedded"
+const TargetName = "Marlin/ESP3DLib"
 const TargetType = "Printer3D"
 const TargetId = 30
 const Target = "Marlin"

@@ -311,7 +311,7 @@ const About = () => {
                         interfaceSettings.current.custom &&
                         interfaceSettings.current.custom.name
                         ? interfaceSettings.current.custom.name
-                        : Name
+                        : TargetName
                 )}
             </h4>
             {isLoading && <Loading />}

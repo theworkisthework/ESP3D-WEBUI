@@ -211,7 +211,7 @@
   "S204": "This will start the wizard to help you to configure the system. You can still configure the system manually later by going to settings.",
   "S205":"Do you want to exit the setup wizard?",
   "S206": "Do you want to relaunch wizard next time?",
-  "S207": "This WebUi is for $ on #",
+  "S207": "This WebUi is for $ firmware used on #",
   "S208": "Your target firmware does not match the WebUI version, please update WebUI or change your setting.",
   "Printer3D": "3D Printer",
   "CNC": "CNC",
