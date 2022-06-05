@@ -32,7 +32,18 @@ import {
     useTargetContextFn,
 } from "./TargetContext"
 import realCommandsTable from "./realCommandsTable"
-
+/*
+GRBL            10
+MARLIN          20
+MARLIN_EMBEDDED 30
+SMOOTHIEWARE    40
+REPETIER        50
+FLUIDNC         60
+REPRAP          70
+*/
+const TargetName = "FluidNC"
+const TargetType = "CNC"
+const TargetId = 60
 const Target = "FluidNC"
 const webUIbuild = "F2"
 const Name = "FluidNC"
@@ -44,6 +55,9 @@ const variablesList = [...realCommandsTable]
 export {
     MachineSettings,
     Target,
+    TargetId,
+    TargetName,
+    TargetType,
     fwUrl,
     Name,
     files,

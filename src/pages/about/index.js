@@ -18,7 +18,7 @@
  License along with This code; if not, write to the Free Software
  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
-import { h } from "preact"
+import { Fragment, h } from "preact"
 import { useEffect, useState, useRef } from "preact/hooks"
 import {
     ButtonImg,
@@ -37,7 +37,15 @@ import {
 } from "../../contexts"
 import { Esp3dVersion } from "../../components/App/version"
 import { Github, RefreshCcw, UploadCloud, LifeBuoy, Info } from "preact-feather"
-import { webUiUrl, fwUrl, Name, restartdelay } from "../../targets"
+import {
+    webUiUrl,
+    fwUrl,
+    Name,
+    restartdelay,
+    TargetName,
+    TargetType,
+    TargetId,
+} from "../../targets"
 import {
     showConfirmationModal,
     showProgressModal,
@@ -50,6 +58,7 @@ let about = []
  */
 const CustomEntry = () => {
     const { interfaceSettings } = useSettingsContext()
+
     let HelpEntry
     let InfoEntry
     if (
@@ -103,7 +112,7 @@ const About = () => {
     const { toasts, modals, uisettings } = useUiContext()
     const { Disconnect } = useWsContext()
     const { createNewRequest, abortRequest } = useHttpQueue()
-    const { interfaceSettings } = useSettingsContext()
+    const { interfaceSettings, connectionSettings } = useSettingsContext()
     const [isLoading, setIsLoading] = useState(true)
     const progressBar = {}
     const [props, setProps] = useState([...about])
@@ -284,6 +293,9 @@ const About = () => {
         }
     }, [])
 
+    console.log(connectionSettings)
+    console.log(TargetId)
+
     return (
         <div id="about" class="container">
             <input
@@ -309,6 +321,22 @@ const About = () => {
                     <hr />
                     <CenterLeft>
                         <ul>
+                            <li>
+                                <span class="text-primary">
+                                    {T("S207")
+                                        .replace("$", TargetName)
+                                        .replace("#", T(TargetType))}
+                                </span>
+                                {connectionSettings.current.FWTargetID !=
+                                    TargetId && (
+                                    <Fragment>
+                                        <br />
+                                        <span class="text-error">
+                                            {T("S208")}
+                                        </span>
+                                    </Fragment>
+                                )}
+                            </li>
                             <li>
                                 <span class="text-primary">{T("S150")}: </span>
                                 <span class="text-dark">

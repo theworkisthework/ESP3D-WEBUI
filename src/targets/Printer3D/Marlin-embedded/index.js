@@ -36,6 +36,18 @@ import {
 import { AppLogo as WebUILogo } from "../../../components/Images/logo"
 import { AppLogo } from "./logo"
 
+/*
+GRBL            10
+MARLIN          20
+MARLIN_EMBEDDED 30
+SMOOTHIEWARE    40
+REPETIER        50
+FLUIDNC         60
+REPRAP          70
+*/
+const TargetName = "Marlin-embedded"
+const TargetType = "Printer3D"
+const TargetId = 30
 const Target = "Marlin"
 const webUIbuild = "Me2"
 const Name = "Marlin"
@@ -46,6 +58,9 @@ const restartdelay = 30
 export {
     MachineSettings,
     Target,
+    TargetId,
+    TargetName,
+    TargetType,
     fwUrl,
     Name,
     files,

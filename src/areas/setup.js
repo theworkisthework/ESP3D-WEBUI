@@ -58,6 +58,21 @@ const SetupContainer = () => {
     const [isLoading, setIsLoading] = useState(true)
     const [features, setFeatures] = useState(featuresSettings.current)
     const { createNewRequest, abortRequest } = useHttpQueue()
+    const getInterfaceElement = (section, subsection, label) => {
+        if (
+            featuresSettings.current &&
+            featuresSettings.current[section] &&
+            featuresSettings.current[section][subsection] &&
+            Array.isArray(featuresSettings.current[section][subsection])
+        )
+            return featuresSettings.current[section][subsection][
+                featuresSettings.current[section][subsection].findIndex(
+                    (e) => e.label == label
+                )
+            ]
+        return null
+    }
+
     const getFeatures = () => {
         setIsLoading(true)
         createNewRequest(
@@ -67,6 +82,7 @@ const SetupContainer = () => {
                 onSuccess: (result) => {
                     try {
                         const jsonResult = JSON.parse(result)
+
                         if (
                             !jsonResult ||
                             jsonResult.cmd != 400 ||
@@ -80,6 +96,7 @@ const SetupContainer = () => {
                             return
                         }
                         const feat = formatStructure(jsonResult.data)
+
                         featuresSettings.current = { ...feat }
                         setFeatures(featuresSettings.current)
                     } catch (e) {
@@ -100,7 +117,7 @@ const SetupContainer = () => {
     }
     const removeSetupFlag = () => {
         createNewRequest(
-            espHttpURL("command", { cmd: "[ESP800]setup=0" }),
+            espHttpURL("command", { cmd: "[ESP800]setup=1" }),
             { method: "GET" },
             {
                 onSuccess: (result) => {
@@ -119,7 +136,6 @@ const SetupContainer = () => {
             featuresSettings.current &&
             Object.keys(featuresSettings.current).length != 0
         ) {
-            setFeatures(featuresSettings.current)
             setIsLoading(false)
         } else {
             if (uisettings.getValue("autoload")) {
@@ -127,6 +143,7 @@ const SetupContainer = () => {
             } else setIsLoading(false)
         }
     }, [])
+    setFeatures(featuresSettings.current)
     return (
         <div class="empty fullscreen">
             <div class="centered text-primary">

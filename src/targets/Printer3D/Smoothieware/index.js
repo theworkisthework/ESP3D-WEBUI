@@ -36,6 +36,18 @@ import {
 import { AppLogo } from "../../../components/Images/logo"
 import { Eye as WebUILogo } from "preact-feather"
 
+/*
+GRBL            10
+MARLIN          20
+MARLIN_EMBEDDED 30
+SMOOTHIEWARE    40
+REPETIER        50
+FLUIDNC         60
+REPRAP          70
+*/
+const TargetName = "Smoothieware"
+const TargetType = "Printer3D"
+const TargetId = 40
 const Target = "Smoothieware"
 const webUIbuild = "S2"
 const Name = "ESP3D"
@@ -46,6 +58,9 @@ const restartdelay = 30
 export {
     MachineSettings,
     Target,
+    TargetName,
+    TargetType,
+    TargetId,
     fwUrl,
     Name,
     files,

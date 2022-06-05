@@ -33,6 +33,18 @@ import {
 } from "./TargetContext"
 import realCommandsTable from "./realCommandsTable"
 
+/*
+GRBL            10
+MARLIN          20
+MARLIN_EMBEDDED 30
+SMOOTHIEWARE    40
+REPETIER        50
+FLUIDNC         60
+REPRAP          70
+*/
+const TargetName = "GRBL"
+const TargetType = "SandTable"
+const TargetId = 10
 const Target = "GRBL"
 const webUIbuild = "GS2"
 const Name = "ESP3D"
@@ -44,6 +56,9 @@ const variablesList = [...realCommandsTable]
 export {
     MachineSettings,
     Target,
+    TargetId,
+    TargetName,
+    TargetType,
     fwUrl,
     Name,
     files,
