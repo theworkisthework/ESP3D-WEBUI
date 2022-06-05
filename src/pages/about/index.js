@@ -293,9 +293,6 @@ const About = () => {
         }
     }, [])
 
-    console.log(connectionSettings)
-    console.log(TargetId)
-
     return (
         <div id="about" class="container">
             <input
