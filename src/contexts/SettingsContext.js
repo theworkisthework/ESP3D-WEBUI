@@ -59,6 +59,23 @@ const SettingsContextProvider = ({ children }) => {
         pollingInterval.current = null
     }
 
+    const getFeatureElement = (section, subsection, label) => {
+        if (
+            featuresValues.current &&
+            featuresValues.current[section] &&
+            featuresValues.current[section][subsection] &&
+            Array.isArray(featuresValues.current[section][subsection])
+        )
+            return featuresValues.current[section][subsection][
+                featuresValues.current[section][subsection].findIndex(
+                    (e) => e.label == label
+                )
+            ]
+        return null
+    }
+
+    useSettingsContextFn.getFeatureElement = getFeatureElement
+
     const store = {
         interfaceSettings: interfaceValues,
         connectionSettings: connectionValues,

@@ -51,7 +51,8 @@ const UiContextProvider = ({ children }) => {
         authenticate: true,
         page: "connecting",
     })
-
+    const [canContinueSetup, setCanContinueSetup] = useState(true)
+    const applyChanges = useRef(() => {})
     const toastsRef = useRef(toasts)
     toastsRef.current = toasts
     const notificationsRef = useRef(notifications)
@@ -345,6 +346,14 @@ const UiContextProvider = ({ children }) => {
             removeModal,
             getModalIndex,
             clearModals,
+        },
+        setup: {
+            canContinue: canContinueSetup,
+            setCanContinue: setCanContinueSetup,
+            applyChanges: applyChanges,
+            setApplyChanges: (fn) => {
+                applyChanges.current = fn
+            },
         },
         connection: {
             connectionState,

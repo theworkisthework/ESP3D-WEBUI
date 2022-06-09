@@ -20,6 +20,7 @@
 import { h } from "preact"
 import { iconsTarget } from "./icons"
 import { files } from "./files"
+import { configSteps } from "./setup"
 import { processor } from "./processor"
 import { defaultPanelsList } from "./panels"
 import { MachineSettings } from "./MachineSettings"
@@ -78,4 +79,5 @@ export {
     WebUILogo,
     QuickButtonsBar,
     MixedExtrudersControl,
+    configSteps,
 }
