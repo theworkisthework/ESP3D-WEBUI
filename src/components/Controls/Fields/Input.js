@@ -249,7 +249,7 @@ const Input = ({
                     class="input-group-btn"
                     ltooltip
                     data-tooltip={T("S40")}
-                    icon={<Search color="blue" />}
+                    icon={<Search />}
                     onClick={(e) => {
                         useUiContextFn.haptic()
                         e.target.blur()

@@ -47,6 +47,80 @@ import { exportFeatures } from "./exportHelper"
 import { importFeatures } from "./importHelper"
 import { restartdelay } from "../../targets"
 
+/**
+ * Generate validation for a field
+ * @param fieldData - The data for the field.
+ * @returns The validation object
+ */
+const generateValidation = (fieldData, checkFn) => {
+    let validation = {
+        message: <Flag size="1rem" />,
+        valid: true,
+        modified: true,
+    }
+    if (fieldData.type == "text") {
+        if (fieldData.cast == "A") {
+            if (
+                !/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(
+                    fieldData.value
+                )
+            )
+                validation.valid = false
+        } else {
+            if (typeof fieldData.min != undefined) {
+                if (fieldData.value.trim().length < fieldData.min) {
+                    validation.valid = false
+                } else if (typeof fieldData.minSecondary != undefined) {
+                    if (
+                        fieldData.value.trim().length <
+                            fieldData.minSecondary &&
+                        fieldData.value.trim().length > fieldData.min
+                    ) {
+                        validation.valid = false
+                    }
+                }
+            }
+
+            if (fieldData.max) {
+                if (fieldData.value.trim().length > fieldData.max) {
+                    validation.valid = false
+                }
+            }
+        }
+    } else if (fieldData.type == "number") {
+        if (fieldData.max) {
+            if (fieldData.value > fieldData.max) {
+                validation.valid = false
+            }
+        }
+        if (fieldData.min) {
+            if (fieldData.value < fieldData.min) {
+                validation.valid = false
+            }
+        }
+    } else if (fieldData.type == "select") {
+        const index = fieldData.options.findIndex(
+            (element) => element.value == parseInt(fieldData.value)
+        )
+        if (index == -1) {
+            validation.valid = false
+        }
+    }
+    if (!validation.valid) {
+        validation.message = T("S42")
+    }
+    fieldData.haserror = !validation.valid
+    if (fieldData.value == fieldData.initial) {
+        fieldData.hasmodified = false
+    } else {
+        fieldData.hasmodified = true
+    }
+    if (checkFn) checkFn()
+
+    if (!fieldData.hasmodified && !fieldData.haserror) return null
+    return validation
+}
+
 const FeaturesTab = () => {
     const { toasts, modals, uisettings } = useUiContext()
     const { Disconnect } = useWsContext()
@@ -303,79 +377,6 @@ const FeaturesTab = () => {
         }
     }
 
-    /**
-     * Generate validation for a field
-     * @param fieldData - The data for the field.
-     * @returns The validation object
-     */
-    const generateValidation = (fieldData) => {
-        let validation = {
-            message: <Flag size="1rem" />,
-            valid: true,
-            modified: true,
-        }
-        if (fieldData.type == "text") {
-            if (fieldData.cast == "A") {
-                if (
-                    !/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(
-                        fieldData.value
-                    )
-                )
-                    validation.valid = false
-            } else {
-                if (typeof fieldData.min != undefined) {
-                    if (fieldData.value.trim().length < fieldData.min) {
-                        validation.valid = false
-                    } else if (typeof fieldData.minSecondary != undefined) {
-                        if (
-                            fieldData.value.trim().length <
-                                fieldData.minSecondary &&
-                            fieldData.value.trim().length > fieldData.min
-                        ) {
-                            validation.valid = false
-                        }
-                    }
-                }
-
-                if (fieldData.max) {
-                    if (fieldData.value.trim().length > fieldData.max) {
-                        validation.valid = false
-                    }
-                }
-            }
-        } else if (fieldData.type == "number") {
-            if (fieldData.max) {
-                if (fieldData.value > fieldData.max) {
-                    validation.valid = false
-                }
-            }
-            if (fieldData.min) {
-                if (fieldData.value < fieldData.min) {
-                    validation.valid = false
-                }
-            }
-        } else if (fieldData.type == "select") {
-            const index = fieldData.options.findIndex(
-                (element) => element.value == parseInt(fieldData.value)
-            )
-            if (index == -1) {
-                validation.valid = false
-            }
-        }
-        if (!validation.valid) {
-            validation.message = T("S42")
-        }
-        fieldData.haserror = !validation.valid
-        if (fieldData.value == fieldData.initial) {
-            fieldData.hasmodified = false
-        } else {
-            fieldData.hasmodified = true
-        }
-        setShowSave(checkSaveStatus())
-        if (!fieldData.hasmodified && !fieldData.haserror) return null
-        return validation
-    }
-
     useEffect(() => {
         if (
             featuresSettings.current &&
@@ -501,7 +502,12 @@ const FeaturesTab = () => {
                                                                                             val
                                                                                     setvalidation(
                                                                                         generateValidation(
-                                                                                            fieldData
+                                                                                            fieldData,
+                                                                                            () => {
+                                                                                                setShowSave(
+                                                                                                    checkSaveStatus()
+                                                                                                )
+                                                                                            }
                                                                                         )
                                                                                     )
                                                                                 }}
@@ -612,4 +618,4 @@ const FeaturesTab = () => {
     )
 }
 
-export { FeaturesTab }
+export { FeaturesTab, generateValidation }

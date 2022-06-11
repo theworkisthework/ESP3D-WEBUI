@@ -216,6 +216,8 @@
   "S209": "You can relaunch it anytime, or manually update your settings.",
   "S210": "Congratulation, you setup configuration is now finished.",
   "S211": "Network setup",
+  "S212": "Changes are not saved, save them ?",
+  "S213": "Undo changes",
   "Printer3D": "3D Printer",
   "CNC": "CNC",
   "SandTable": "Sand Table",

@@ -51,8 +51,12 @@ const UiContextProvider = ({ children }) => {
         authenticate: true,
         page: "connecting",
     })
-    const [canContinueSetup, setCanContinueSetup] = useState(true)
+    const [stepStatus, setStepStatus] = useState({
+        haserrors: false,
+        hasmodified: false,
+    })
     const applyChanges = useRef(() => {})
+    const resetChanges = useRef(() => {})
     const toastsRef = useRef(toasts)
     toastsRef.current = toasts
     const notificationsRef = useRef(notifications)
@@ -348,11 +352,15 @@ const UiContextProvider = ({ children }) => {
             clearModals,
         },
         setup: {
-            canContinue: canContinueSetup,
-            setCanContinue: setCanContinueSetup,
+            stepStatus,
+            setStepStatus,
             applyChanges: applyChanges,
             setApplyChanges: (fn) => {
                 applyChanges.current = fn
+            },
+            resetChanges: resetChanges,
+            setResetChanges: (fn) => {
+                resetChanges.current = fn
             },
         },
         connection: {

@@ -21,12 +21,13 @@
 import { h } from "preact"
 import { useEffect, useState, useRef } from "preact/hooks"
 import { useUiContext, useSettingsContextFn } from "../../../contexts"
+import { generateValidation } from "../../../tabs/features"
 import { Field } from "../../../components/Controls"
 import { T } from "../../../components/Translations"
-import { Flag } from "preact-feather"
+import { showConfirmationModal } from "../../../components/Modal"
 
 const NetworkSetup = () => {
-    const { setup } = useUiContext()
+    const { setup, toasts, modals } = useUiContext()
     const featuresList = useRef([])
     const [featuresSetup, setFeaturesSetup] = useState(featuresList.current)
     const networkElements = [
@@ -47,22 +48,59 @@ const NetworkSetup = () => {
         },
     ]
 
-    const updateNavigation = (status) => {
-        if (status.haserrors) {
-            setup.setCanContinue(false)
-        } else {
-            setup.setCanContinue(true)
-        }
+    const resetChanges = () => {
+        featuresList.current.map((element) => {
+            element.value = element.initial
+        })
+        setup.setStepStatus({
+            haserror: setup.stepStatus.haserrors,
+            hasmodified: false,
+        })
+        console.log("reset settings")
     }
 
-    const applyChanges = () => {
+    const saveChanges = (nextFn) => {
+        console.log("Save changes")
+        featuresList.current.map((element) => {
+            //TODO: save
+            element.origin.value = element.value
+            element.origin.initial = element.value
+        })
+        if (nextFn) nextFn()
+    }
+
+    const applyChanges = (nextFn = null) => {
         const status = checkStatus()
-        if (status.haserrors || !status.hasmodified) {
-            console.log("Nothing to update")
+        if (status.haserrors) {
+            console.log("Has error so stop")
             return
         }
-        console.log("Update settings")
-        //TODO: update in memory && esp EEPROM
+        if (status.hasmodified) {
+            //TODO: update in memory && esp EEPROM
+            console.log("Update settings")
+            console.log("Changes are not saved")
+            showConfirmationModal({
+                modals,
+                title: T("S26"),
+                content: T("S212"),
+                button1: {
+                    cb: () => {
+                        if (nextFn) nextFn()
+                        console.log("Discard changes")
+                    },
+                    text: T("S29"),
+                },
+                button2: {
+                    cb: () => {
+                        saveChanges(nextFn)
+                    },
+                    text: T("S27"),
+                },
+            })
+        } else {
+            if (nextFn) nextFn()
+            console.log("Nothing to update")
+        }
     }
 
     function checkStatus() {
@@ -72,74 +110,6 @@ const NetworkSetup = () => {
         let haserrors =
             stringified.indexOf('"haserror":true') == -1 ? false : true
         return { hasmodified, haserrors }
-    }
-
-    const generateValidation = (fieldData) => {
-        let validation = {
-            message: <Flag size="1rem" />,
-            valid: true,
-            modified: true,
-        }
-        if (fieldData.type == "text") {
-            if (fieldData.cast == "A") {
-                if (
-                    !/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(
-                        fieldData.value
-                    )
-                )
-                    validation.valid = false
-            } else {
-                if (typeof fieldData.min != undefined) {
-                    if (fieldData.value.trim().length < fieldData.min) {
-                        validation.valid = false
-                    } else if (typeof fieldData.minSecondary != undefined) {
-                        if (
-                            fieldData.value.trim().length <
-                                fieldData.minSecondary &&
-                            fieldData.value.trim().length > fieldData.min
-                        ) {
-                            validation.valid = false
-                        }
-                    }
-                }
-
-                if (fieldData.max) {
-                    if (fieldData.value.trim().length > fieldData.max) {
-                        validation.valid = false
-                    }
-                }
-            }
-        } else if (fieldData.type == "number") {
-            if (fieldData.max) {
-                if (fieldData.value > fieldData.max) {
-                    validation.valid = false
-                }
-            }
-            if (fieldData.min) {
-                if (fieldData.value < fieldData.min) {
-                    validation.valid = false
-                }
-            }
-        } else if (fieldData.type == "select") {
-            const index = fieldData.options.findIndex(
-                (element) => element.value == parseInt(fieldData.value)
-            )
-            if (index == -1) {
-                validation.valid = false
-            }
-        }
-        if (!validation.valid) {
-            validation.message = T("S42")
-        }
-        fieldData.haserror = !validation.valid
-        if (fieldData.value == fieldData.initial) {
-            fieldData.hasmodified = false
-        } else {
-            fieldData.hasmodified = true
-        }
-        updateNavigation(checkStatus())
-        if (!fieldData.hasmodified && !fieldData.haserror) return null
-        return validation
     }
 
     useEffect(() => {
@@ -155,12 +125,14 @@ const NetworkSetup = () => {
                 fieldData.section = element.section
                 fieldData.subSection = element.subSection
                 fieldData.value = fieldData.initial
+                fieldData.origin = currentElement
                 elementsList.push(fieldData)
             }
         })
         setFeaturesSetup(elementsList)
         featuresList.current = elementsList
         setup.setApplyChanges(applyChanges)
+        setup.setResetChanges(resetChanges)
     }, [])
     return (
         <div>
@@ -192,7 +164,11 @@ const NetworkSetup = () => {
                             {...rest}
                             setValue={(val, update) => {
                                 if (!update) fieldData.value = val
-                                setvalidation(generateValidation(fieldData))
+                                setvalidation(
+                                    generateValidation(fieldData, () => {
+                                        setup.setStepStatus(checkStatus())
+                                    })
+                                )
                             }}
                             validation={validation}
                         />

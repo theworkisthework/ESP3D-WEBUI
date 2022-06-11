@@ -111,6 +111,14 @@
   font-size: 0.8rem;
 }
 
+.empty .step-content{
+  border-top: .05rem solid #bcc3ce;
+  border-bottom: .05rem solid #bcc3ce;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+}
+
 .fields-line {
   display: flex;
   width: 100%;
@@ -346,8 +354,7 @@ a label {
   margin-right: 0.25rem
 }
 
-.step-content .title{
-  font-size: 1.1rem;
+.title{
   font-weight: bolder;
 }
 

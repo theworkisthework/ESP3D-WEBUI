@@ -20,7 +20,13 @@
 import { Fragment, h } from "preact"
 import { useEffect, useState, useRef } from "preact/hooks"
 import { ViewContainerFn } from "."
-import { ArrowRight, ArrowLeft, Check, XCircle } from "preact-feather"
+import {
+    ArrowRight,
+    ArrowLeft,
+    Check,
+    XCircle,
+    RotateCcw,
+} from "preact-feather"
 import { ButtonImg } from "../components/Controls"
 import { T } from "../components/Translations"
 import { useUiContextFn, useUiContext, useSettingsContext } from "../contexts"
@@ -30,6 +36,7 @@ import { formatStructure } from "../tabs/features/formatHelper"
 import { useHttpQueue } from "../hooks"
 import { espHttpURL } from "../components/Helpers"
 import { configSteps } from "../targets"
+import { AppLogo } from "../targets"
 
 /*
  * Local const
@@ -48,7 +55,6 @@ const SetupContainer = () => {
     const { connectionSettings, featuresSettings } = useSettingsContext()
     const [isLoading, setIsLoading] = useState(true)
     const { createNewRequest, abortRequest } = useHttpQueue()
-    const [canContinue, setCanContinue] = useState(setup.canContinue)
     const getFeatures = () => {
         setIsLoading(true)
         createNewRequest(
@@ -122,6 +128,7 @@ const SetupContainer = () => {
     return (
         <div class="empty fullscreen">
             <div class="centered text-primary">
+                <AppLogo />
                 <ul class="step">
                     {steps.map((element, index) => {
                         return (
@@ -136,7 +143,7 @@ const SetupContainer = () => {
                                         e.target.blur()
                                     }}
                                     class="tooltip"
-                                    data-tooltip={element.name}
+                                    data-tooltip={T(element.title)}
                                 ></a>
                             </li>
                         )
@@ -146,8 +153,8 @@ const SetupContainer = () => {
 
                 {!isLoading && (
                     <Fragment>
+                        <div class="m-2 title">{T(steps[step].title)}</div>
                         <div class="step-content">
-                            <div class="m-2 title">{T(steps[step].title)}</div>
                             {steps[step].description && (
                                 <div class="m-2">
                                     {T(steps[step].description)}
@@ -234,7 +241,21 @@ const SetupContainer = () => {
                                 </Fragment>
                             )}
 
-                            {setup.canContinue && (
+                            {setup.stepStatus.hasmodified &&
+                                step < steps.length - 1 && (
+                                    <ButtonImg
+                                        m2
+                                        icon={<RotateCcw />}
+                                        label={T("S213")}
+                                        onclick={() => {
+                                            useUiContextFn.haptic()
+
+                                            if (setup.resetChanges.current)
+                                                setup.resetChanges.current()
+                                        }}
+                                    />
+                                )}
+                            {!setup.stepStatus.haserrors && (
                                 <ButtonImg
                                     m2
                                     iconRight="1"
@@ -257,8 +278,11 @@ const SetupContainer = () => {
                                             ViewContainerFn.setShowSetup(false)
                                         } else {
                                             if (setup.applyChanges.current)
-                                                setup.applyChanges.current()
-                                            setStep(step + 1)
+                                                setup.applyChanges.current(
+                                                    () => {
+                                                        setStep(step + 1)
+                                                    }
+                                                )
                                         }
                                     }}
                                 />
