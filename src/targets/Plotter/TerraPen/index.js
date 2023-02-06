@@ -35,12 +35,13 @@ import {
 } from "./TargetContext"
 import realCommandsTable from "./realCommandsTable"
 import variablesTable from "./variablesTable"
-import { AppLogo } from "../../../components/Images/logo"
-import { Eye as WebUILogo } from "preact-feather"
+import { AppLogo as WebUILogo } from "../../../components/Images/logo"
+import { AppLogo } from "./logo"
+// import { Eye as WebUILogo } from "preact-feather"
 import { addObjectItem, removeObjectItem } from "../../../components/Helpers"
 
-const Target = "HP-GL"
-const webUIbuild = "H-1"
+const Target = "Terrapen"
+const webUIbuild = "TP1"
 const Name = "ESP3D"
 const fwUrl = [
     "https://github.com/luc-github/ESP3D/tree/3.0",
