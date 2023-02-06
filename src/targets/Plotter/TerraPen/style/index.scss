@@ -1,0 +1,269 @@
+@import "../../style/index";
+@import "../../../../style/index.scss";
+
+.yaml-editor {
+  outline: none;
+  height: 400px;
+  border: 0.5rem solid #dadee4;
+  border-radius: $border-radius;
+  padding: 0.5rem 0.5rem;
+  width: 90%;
+  max-width: 500px;
+}
+
+// Main page content
+.main-page-container {
+  // background: #E5F15C;
+}
+
+// Menu bar logo
+.navbar-brand.logo.no-box label svg.terrapen-logo{
+  height: 28px;
+  width: 25px;
+  stroke-width: 0.3em;
+  fill: none;
+ }
+
+ // Disconnected page logo
+.terrapen-logo {
+   height: 50px;
+   width: 29px;
+   stroke-width: 0.3em;
+   fill: none;
+   stroke: #E83867;
+  }
+
+  // All svgs
+svg {
+  stroke: #E83867;
+  
+}
+
+.files-list-footer {
+  background: #E5F15C;
+  color: #E83867;
+}
+
+.jog-buttons-container {
+  background: #E5F15C;
+  color: #E83867;
+  border-color: #000000;
+  
+}
+
+.flatbtn:active {
+  background: #E5F15C;
+  color: #E83867;
+  border-color: #000000;
+}
+
+.jog-distance-selector-header,
+.flatbtn label {
+  color: #E83867;
+  border-color: #000000;
+}
+
+// .jog-distance-selector-header:active{
+//   border-color: #E5F15C;
+// }
+.flatbtn input[type="radio"]:checked + label {
+  color: #E5F15C;
+  background: #E83867;
+  border-color: #000000;
+}
+
+.jog-position-ctrl,
+.jog-position-header {
+  color: #E83867;
+  border-color: #000000;
+}
+
+.menu-item :hover {
+  color: #E83867;
+  background-color: #E83867;
+  border-color: #E83867;
+}
+
+.navbar,
+.panel .navbar,
+.panel .navbar-section {
+  background: #E5F15C;
+  color: #E83867;
+}
+
+// header.navbar section.navbar-section a#settingsLink
+
+.btn.btn-link.no-box.feather-icon-container,
+.btn.btn-link.no-box.feather-icon-container.active {
+  color: #E83867;
+}
+
+.btn {
+  color: #E83867;
+  border-color: #000000;
+}
+
+// .btn :hover {
+//   color: #E5F15C;
+//   background: #E83867;
+//   border-color: #E83867;
+// }
+
+.dropdown.dropdown-right {
+  color: #E83867;
+}
+
+.dropdown.dropdown-right :hover {
+  color: #E5F15C;
+  background: #E83867;
+  border-color: #E83867;
+}
+
+// .active {
+//   color: #E83867;
+// }
+
+.dropdown.dropdown-right .menu {
+  background: #E5F15C;
+  color: #E83867;
+}
+
+.empty.fullscreen {
+  background: #E5F15C;
+}
+
+.centered.text-primary {
+  color: #E83867 !important;
+}
+
+// End of Red on Yellow
+
+
+
+
+// // Yellow on White
+// // Main page content
+// .main-page-container {
+//   // background: #E5F15C;
+// }
+
+// // Menu bar logo
+// .navbar-brand.logo.no-box label svg.terrapen-logo{
+//   height: 28px;
+//   width: 25px;
+//   stroke-width: 0.3em;
+//   fill: none;
+//  }
+
+//  // Disconnected page logo
+// .terrapen-logo {
+//    height: 50px;
+//    width: 29px;
+//    stroke-width: 0.3em;
+//    fill: none;
+//   }
+
+//   // All svgs
+// svg {
+//   stroke: #E83867;
+  
+// }
+
+// .files-list-footer {
+//   background: #E5F15C;
+//   color: #E83867;
+// }
+
+// .jog-buttons-container {
+//   background: #E5F15C;
+//   color: #E83867;
+//   border-color: #000000;
+  
+// }
+
+// .flatbtn:active {
+//   background: #E5F15C;
+//   color: #E83867;
+//   border-color: #000000;
+// }
+
+// .jog-distance-selector-header,
+// .flatbtn label {
+//   color: #E83867;
+//   border-color: #000000;
+// }
+
+// // .jog-distance-selector-header:active{
+// //   border-color: #E5F15C;
+// // }
+// .flatbtn input[type="radio"]:checked + label {
+//   color: #E5F15C;
+//   background: #E83867;
+//   border-color: #000000;
+// }
+
+// .jog-position-ctrl,
+// .jog-position-header {
+//   color: #E83867;
+//   border-color: #000000;
+// }
+
+// .menu-item :hover {
+//   color: #E83867;
+//   background-color: #E83867;
+//   border-color: #E83867;
+// }
+
+// .navbar,
+// .panel .navbar,
+// .panel .navbar-section {
+//   background: #E5F15C;
+//   color: #E83867;
+// }
+
+// // header.navbar section.navbar-section a#settingsLink
+
+// .btn.btn-link.no-box.feather-icon-container,
+// .btn.btn-link.no-box.feather-icon-container.active {
+//   color: #E83867;
+// }
+
+// .btn {
+//   color: #E83867;
+//   border-color: #000000;
+// }
+
+// // .btn :hover {
+// //   color: #E5F15C;
+// //   background: #E83867;
+// //   border-color: #E83867;
+// // }
+
+// .dropdown.dropdown-right {
+//   color: #E83867;
+// }
+
+// .dropdown.dropdown-right :hover {
+//   color: #E5F15C;
+//   background: #E83867;
+//   border-color: #E83867;
+// }
+
+// // .active {
+// //   color: #E83867;
+// // }
+
+// .dropdown.dropdown-right .menu {
+//   background: #E5F15C;
+//   color: #E83867;
+// }
+
+// .empty.fullscreen {
+//   background: #E5F15C;
+// }
+
+// .centered.text-primary {
+//   color: #E83867 !important;
+// }
+
+// // End of Yellow on White
