@@ -33,7 +33,7 @@ const showProgressModal = ({ modals, title, button1, content }) => {
             title: (
                 <div
                     class="text-primary feather-icon-container"
-                    style="line-height:24px!important"
+                    style="line-height:24px"
                 >
                     <Info />
                     <label>{title}</label>

@@ -257,7 +257,7 @@ const ExtraContent = ({
             default:
                 return (
                     <iframe
-                        style="z-index:0!important"
+                        style="z-index:0"
                         class={
                             type == "extension"
                                 ? "extensionContainer d-none"

@@ -218,7 +218,7 @@ const ConnectionContainer = () => {
                     <div class="empty-icon">
                         <div
                             class="d-flex p-centered"
-                            style="flex-wrap:nowrap!important"
+                            style="flex-wrap:nowrap"
                         >
                             <AppLogo />
                             <Minus size="50px" class="hide-low" />

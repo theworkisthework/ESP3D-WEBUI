@@ -630,7 +630,7 @@ const JogPanel = () => {
                             <select
                                 id="selectAxisList"
                                 class="form-select"
-                                style="border-color: #5755d9!important"
+                                style="border-color: #5755d9"
                                 onchange={(e) => {
                                     onChangeAxis(e)
                                 }}

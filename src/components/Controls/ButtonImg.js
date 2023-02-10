@@ -50,7 +50,7 @@ const ButtonImg = ({
                 }` + `${disabled ? "pointer;pointer-events: none;" : ""}`
             }
         >
-            <div style="overflow:hidden!important;white-space: nowrap;text-overflow:ellipsis!important;cursor: pointer;pointer-events: none;">
+            <div style="overflow:hidden;white-space: nowrap;text-overflow:ellipsis;cursor: pointer;pointer-events: none;">
                 {iconRight ? "" : icon}
                 {label && (
                     <label

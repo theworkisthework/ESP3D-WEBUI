@@ -23,8 +23,8 @@ input[type=range]::-ms-thumb{/*Internet Explorer*/
 }
 
 .control-fieldset{
-  color: black!important;
-  font-size: 0.8rem!important;
+  color: black;
+  font-size: 0.8rem;
 }
 
 .text-label{
@@ -55,7 +55,7 @@ input[type=range]::-ms-thumb{/*Internet Explorer*/
 }
 
 .btn-close {
-  padding-left: 3px !important;
+  padding-left: 3px ;
 }
 
 .btn-header {
@@ -117,9 +117,9 @@ input[type=range]::-ms-thumb{/*Internet Explorer*/
 .files-list {
   border: 0.05rem solid #dadee4;
   border-radius: $border-radius;
-  padding: 5px 5px !important;
+  padding: 5px 5px ;
   overflow-x: hidden;
-  overflow-y: scroll !important;
+  overflow-y: scroll ;
 }
 
 .drop-zone--over {
@@ -203,10 +203,10 @@ span.input-group-addon{
   word-break: break-all;
   border: 0.05rem solid #dadee4;
   border-radius: $border-radius;
-  padding: 5px 5px !important;
-  margin-top: 0px !important;
+  padding: 5px 5px ;
+  margin-top: 0px ;
   overflow-x: hidden;
-  overflow-y: scroll !important;
+  overflow-y: scroll ;
   user-select: text;
   -moz-user-select: text;
   -webkit-user-select: text;
@@ -313,7 +313,7 @@ span.input-group-addon{
 }
 
 .m-05 {
-  margin: 0.05rem !important;
+  margin: 0.05rem ;
 }
 
 .error-login-message{
@@ -331,15 +331,15 @@ span.input-group-addon{
 }
 
 .body-extension {
-  overflow-y: auto !important;
+  overflow-y: auto ;
 }
 
 .mobile-view .btn-header,
 .btn-header:hover,
 .mobile-view .btn-close,
 .btn-close:hover {
-  color: white !important;
-  background-color: blue !important;
+  color: white ;
+  background-color: blue ;
 }
 
 .logo {
@@ -353,8 +353,8 @@ span.input-group-addon{
 .passwordReveal {
   color: #c0c0c0;
   cursor: pointer;
-  margin-top: -0.22rem !important;
-  margin-right: 0.9rem !important;
+  margin-top: -0.22rem ;
+  margin-right: 0.9rem ;
 }
 
 .clearShortkey:hover,
@@ -363,8 +363,8 @@ span.input-group-addon{
 }
 
 .align-top {
-  align-items: top !important;
-  -ms-flex-align: top !important;
+  align-items: top ;
+  -ms-flex-align: top ;
 }
 
 a label {
@@ -381,8 +381,8 @@ a label {
 
 .notification-line {
   overflow-x: hidden;
-  line-height: 24px !important;
-  padding-top: 4px !important;
+  line-height: 24px ;
+  padding-top: 4px ;
   padding-left: 4px;
   padding-right: 4px;
   cursor: pointer;
@@ -481,13 +481,13 @@ a label {
 }
 
 .has-button-submit .form-input {
-  border-radius: 0.2rem !important;
+  border-radius: 0.2rem ;
 }
 
 .has-modification {
   .has-button-submit .form-input {
-    border-top-right-radius: 0px !important;
-    border-bottom-right-radius: 0px !important;
+    border-top-right-radius: 0px ;
+    border-bottom-right-radius: 0px ;
   }
 }
 

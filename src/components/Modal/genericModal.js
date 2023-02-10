@@ -46,7 +46,7 @@ const showModal = ({
             title: (
                 <div
                     class="text-primary feather-icon-container"
-                    style="line-height:24px!important"
+                    style="line-height:24px"
                 >
                     {icon}
                     <label>{title}</label>

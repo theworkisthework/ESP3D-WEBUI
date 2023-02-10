@@ -5,16 +5,16 @@ body,
 .empty,
 html{
 background-color:#222;
-color:#d3e4ff!important;
+color:#d3e4ff;
 }
 
 a svg.esp3dlogo{
-color:#0077ff!important;
+color:#0077ff;
 }
 
 a.active svg,
 a.active label.hide-low{
-color:rgb(0, 85, 197)!important;
+color:rgb(0, 85, 197);
 }
 
 .menu-container .navbar{
@@ -33,7 +33,7 @@ color:rgb(0, 85, 197)!important;
 }
 
 span.navbar-section{
-    color:#f7f8f9!important;
+    color:#f7f8f9;
 }
 
 .btn {
@@ -77,7 +77,7 @@ span.navbar-section{
 }
 
 .text-primary {
-    color: #66a9e7!important;
+    color: #66a9e7;
 }
 
 .label.label-primary {
@@ -87,11 +87,11 @@ span.navbar-section{
 }
 
 .text-dark {
-    color: #ffffff!important;
+    color: #ffffff;
 }
 
 .tab-item {
-    color: #c1c1c1!important;
+    color: #c1c1c1;
 }
 
 .tab .tab-item a:focus, .tab .tab-item a:hover, .jog-position-header {
@@ -99,19 +99,19 @@ span.navbar-section{
 }
 
 a.active svg {
-    color: rgb(0 171 255)!important;
+    color: rgb(0 171 255);
 }
 
 a.active label.hide-low {
-    color: rgb(218, 235, 255)!important;
+    color: rgb(218, 235, 255);
 }
 
 a.active label.hide-low:hover, a.active label.hide-low:active {
-    color: rgb(26, 26, 26)!important;
+    color: rgb(26, 26, 26);
 }
 
 a.active label.hide-low {
-    color: rgb(0 171 255)!important;
+    color: rgb(0 171 255);
 }
 
 .tab .tab-item a.active, .tab .tab-item.active a {

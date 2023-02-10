@@ -13,22 +13,22 @@ button,
 body,
 .empty,
 html{
-background-color:rgb(200, 200, 233)!important;
-color:white!important;
+background-color:rgb(200, 200, 233);
+color:white;
 
 }
 
 a svg.esp3dlogo{
-color:#c0c0c0!important;
+color:#c0c0c0;
 }
 
 .form-switch input:checked + .form-icon {
-    background-color:white!important;
+    background-color:white;
 }
 
 a.active svg,
 a.active label.hide-low{
-color:blue!important;
+color:blue;
 }
 
 .navbar{
@@ -36,6 +36,6 @@ border-bottom:white solid 0.5px;
 }
 
 span.navbar-section{
-background-color:#0e0e6d!important;
-color:white!important;
+background-color:#0e0e6d;
+color:white;
 }

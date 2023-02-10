@@ -87,7 +87,7 @@ const showLogin = () => {
             title: (
                 <div
                     class="text-primary feather-icon-container"
-                    style="line-height:24px!important"
+                    style="line-height:24px"
                 >
                     <Lock />
                     <label>{T("S145")}</label>

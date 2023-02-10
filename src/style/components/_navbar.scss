@@ -1,14 +1,14 @@
 .tab-item {
-  color: #8080ff !important;
+  color: #8080ff ;
 }
 section .active,
 li .active {
-  color: blue !important;
+  color: blue ;
   font-weight: 700; // bold
 }
 .mobile-view section .active,
 .mobile-view li .active {
-  background-color: rgba(0, 0, 255, 0.1) !important;
+  background-color: rgba(0, 0, 255, 0.1) ;
 }
 
 .navbar {

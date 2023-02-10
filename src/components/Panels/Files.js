@@ -770,7 +770,7 @@ const FilesPanel = () => {
                                 >
                                     <div
                                         class="form-control  file-line-name file-line-action"
-                                        style="height:2rem!important"
+                                        style="height:2rem"
                                     >
                                         <CornerRightUp />
                                         <label class="p-2">...</label>
