@@ -23,8 +23,9 @@
 
 .jog-position-ctrl {
   min-width: 3rem;
-  border: 0.05rem solid #dadee4;
   border-radius: 5px;
+  border: 0.05rem solid #dadee4; 
+  overflow: hidden;
 }
 .jog-position-sub-header,
 .jog-position-header {

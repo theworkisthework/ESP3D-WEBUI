@@ -1,6 +1,101 @@
 @import "../../style/index";
 @import "../../../../style/index.scss";
 
+// Colour plettes
+// Terrapen 1
+$tp1-primary: #E83867;
+$tp1-secondary: #E5F15C;
+
+$tp2-primary: rgb(108,116,134);
+$tp2-secondary: rgb(123,154,161);
+$tp2-other: rgb(239,239,224);
+$tp2-accent: rgb(223,197,224);
+
+
+$tp3-primary: rgb(42,39,48);
+$tp3-secondary: rgb(198,80,152);
+$tp3-other: rgb(165,206,239);
+$tp3-accent: rgb(241,138,117);
+
+$tp4-primary: rgb(97,113,108);
+$tp4-secondary: rgb(158,166,81);
+$tp4-other: rgb(216,219,225);
+$tp4-accent: rgb(38,28,29);
+
+// Core colors
+$primary-color: $tp1-primary;
+$primary-color-dark: darken($primary-color, 3%) !default;
+$primary-color-light: lighten($primary-color, 3%) !default;
+$secondary-color: $tp1-secondary;
+$secondary-color-dark: darken($secondary-color, 3%) !default;
+$secondary-color-light: lighten($secondary-color, 3%) !default;
+
+.text-primary{
+  color: $primary-color !important;
+}
+
+.form-checkbox input:checked + .form-icon, .form-radio input:checked + .form-icon, .form-switch input:checked + .form-icon {
+  background: $primary-color;
+  border-color: #000000;
+}
+
+.m-1 {
+  color: $primary-color;
+}
+
+.jog-position-sub-header, .jog-position-header{
+  color: $primary-color;
+}
+
+.terminal .echo{
+  color: $primary-color;
+}
+
+
+// Dropdown menu stuff
+.text-menu-item{
+  color: $primary-color;
+}
+
+// Dropdown menu items when hovers (also affects the text in children)
+.menu-item:hover .text-menu-item{
+  color: $secondary-color;
+  background: $primary-color;
+}
+
+.menu-item .feather-icon-container {
+  color: $primary-color;
+}
+
+.menu-item:hover .feather-icon-container {
+  color: $secondary-color;
+}
+
+// For some reason, the close button on the drop-down menus has to be set here :shrug:
+.menu-item .btn.btn-clear{
+  color: $primary-color;
+}
+
+// Drop-down menu close button when hovered
+.menu-item:hover .btn.btn-clear{
+  color: $secondary-color;
+}
+
+// This controls the menu mouse hover style 
+.menu .menu-item > .menu-entry:focus, .menu .menu-item > .menu-entry:hover{
+  background: $primary-color;
+}
+
+// Form fields (inputs and drop-downs) border colour when selected
+.form-input:focus, .form-select:focus{
+  border-color: $primary-color;
+}
+
+// Another oddity - the search icon for the 'Client mode' settings.
+.btn.tooltip.tooltip-left.input-group-btn svg {
+  stroke: $primary-color
+}
+
 .yaml-editor {
   outline: none;
   height: 400px;
@@ -13,7 +108,7 @@
 
 // Main page content
 .main-page-container {
-  // background: #E5F15C;
+  // background: $secondary-color;
 }
 
 // Menu bar logo
@@ -32,113 +127,113 @@
    fill: none;
   }
 
-  // All svgs
-svg {
-  stroke: #E83867;
-  
-}
-
 .files-list-footer {
-  background: #E5F15C;
-  color: #E83867;
+  background: $secondary-color;
+  color: $primary-color;
 }
 
 .jog-buttons-container {
-  background: #E5F15C;
-  color: #E83867;
+  background: $secondary-color;
+  color: $primary-color;
   border-color: #000000;
   
 }
 
 .flatbtn:active {
-  background: #E5F15C;
-  color: #E83867;
+  background: $secondary-color;
+  color: $primary-color;
   border-color: #000000;
 }
 
 .jog-distance-selector-header,
 .flatbtn label {
-  color: #E83867;
+  color: $primary-color;
   border-color: #000000;
 }
 
-// .jog-distance-selector-header:active{
-//   border-color: #E5F15C;
-// }
 .flatbtn input[type="radio"]:checked + label {
-  color: #E5F15C;
-  background: #E83867;
+  color: $secondary-color;
+  background: $primary-color;
   border-color: #000000;
 }
 
 .jog-position-ctrl,
 .jog-position-header {
-  color: #E83867;
+  color: $primary-color;
   border-color: #000000;
 }
 
 .menu-item :hover {
-  color: #E83867;
-  background-color: #E83867;
-  border-color: #E83867;
+  color: $primary-color;
+  background-color: $primary-color;
+  border-color: $primary-color;
 }
 
 .navbar,
 .panel .navbar,
 .panel .navbar-section {
-  background: #E5F15C;
-  color: #E83867;
+  background: $secondary-color;
+  color: $primary-color;
 }
 
-// header.navbar section.navbar-section a#settingsLink
-
+// Header icons and text
 .btn.btn-link.no-box.feather-icon-container,
 .btn.btn-link.no-box.feather-icon-container.active {
-  color: #E83867;
+  color: $primary-color;
 }
 
-.btn {
-  color: #E83867;
-  border-color: #000000;
+// In panel drop-down menu highlight settings
+.dropdown.dropdown-right :hover {
+  color: $secondary-color;
+  background: $primary-color;
+  border-color: $primary-color;
+  border-radius: 0.25em;
 }
 
-// .btn :hover {
-//   color: #E5F15C;
-//   background: #E83867;
-//   border-color: #E83867;
+// .active {
+//   color: $primary-color;
 // }
 
-.dropdown.dropdown-right {
-  color: #E83867;
+.btn:active, .btn.active :hover{
+  background: $secondary-color;
 }
 
-.dropdown.dropdown-right :hover {
-  color: #E5F15C;
-  background: #E83867;
-  border-color: #E83867;
+.dropdown.dropdown-right :hover{
+  background: $primary-color;
+  color: $secondary-color;
 }
 
-.active {
-  color: #E83867;
+.label.label-primary {
+  background: $primary-color;
+  color: $secondary-color;
+  margin: 0.1rem;
+}
+
+.tab .tab-item a.active, .tab .tab-item.active a {
+  border-bottom-color: $primary-color;
 }
 
 .dropdown.dropdown-right .menu {
-  background: #E5F15C;
-  color: #E83867;
+  background: $secondary-color;
+  color: $primary-color;
 }
 
 .empty.fullscreen {
-  background: #E5F15C;
+  background: $secondary-color;
 }
 
 .centered.text-primary {
-  color: #E83867 ;
+  color: $primary-color ;
+}
+
+.text-primary {
+  color: $primary-color;
 }
 
 // Yellow on White
 // Main page content
 .main-page-container {
-  // background: #E5F15C;
+  // background: $secondary-color;
 }
 
 // Menu bar logo
@@ -157,107 +252,94 @@ svg {
    fill: none;
   }
 
-  // All svgs
-svg {
-  stroke: #E83867;
-  
-}
-
 .files-list-footer {
-  background: #E5F15C;
-  color: #E83867;
+  background: $secondary-color;
+  color: $primary-color;
 }
 
 .jog-buttons-container {
-  background: #E5F15C;
-  color: #E83867;
+  background: $secondary-color;
+  color: $primary-color;
   border-color: #000000;
   
 }
 
 .flatbtn:active {
-  background: #E5F15C;
-  color: #E83867;
+  background: $secondary-color;
+  color: $primary-color;
   border-color: #000000;
 }
 
 .jog-distance-selector-header,
 .flatbtn label {
-  color: #E83867;
+  color: $primary-color;
   border-color: #000000;
 }
 
 // .jog-distance-selector-header:active{
-//   border-color: #E5F15C;
+//   border-color: $secondary-color;
 // }
 .flatbtn input[type="radio"]:checked + label {
-  color: #E5F15C;
-  background: #E83867;
+  color: $secondary-color;
+  background: $primary-color;
   border-color: #000000;
 }
 
 .jog-position-ctrl,
 .jog-position-header {
-  color: #E83867;
+  color: $primary-color;
   border-color: #000000;
 }
 
 .menu-item :hover {
-  color: #E83867;
-  background-color: #E83867;
-  border-color: #E83867;
+  color: $primary-color;
+  background-color: $primary-color;
+  border-color: $primary-color;
 }
 
 .navbar,
 .panel .navbar,
 .panel .navbar-section {
-  background: #E5F15C;
-  color: #E83867;
-}
-
-// header.navbar section.navbar-section a#settingsLink
-
-.btn.btn-link.no-box.feather-icon-container,
-.btn.btn-link.no-box.feather-icon-container.active {
-  color: #E83867;
+  background: $secondary-color;
+  color: $primary-color;
 }
 
 .btn {
-  color: #E83867;
+  color: $primary-color;
   border-color: #000000;
 }
 
 // .btn :hover {
-//   color: #E5F15C;
-//   background: #E83867;
-//   border-color: #E83867;
+//   color: $secondary-color;
+//   background: $primary-color;
+//   border-color: $primary-color;
 // }
 
 .dropdown.dropdown-right {
-  color: #E83867;
+  color: $primary-color;
 }
 
 .dropdown.dropdown-right :hover {
-  color: #E5F15C;
-  background: #E83867;
-  border-color: #E83867;
+  color: $secondary-color;
+  background: $primary-color;
+  border-color: $primary-color;
 }
 
 // .active {
-//   color: #E83867;
+//   color: $primary-color;
 // }
 
 .dropdown.dropdown-right .menu {
-  background: #E5F15C;
-  color: #E83867;
+  background: $secondary-color;
+  color: $primary-color;
 }
 
 .empty.fullscreen {
-  background: #E5F15C;
+  background: $secondary-color;
 }
 
 .centered.text-primary {
-  color: #E83867 ;
+  color: $primary-color ;
 }
 
 // End of Yellow on White
